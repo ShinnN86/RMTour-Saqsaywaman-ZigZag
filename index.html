@@ -5,19 +5,26 @@
 
   <meta charset="utf-8">
 
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Templo 3D Interactivo</title>
+
+  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
 
   <style>
 
     body {
+
       margin: 0;
+
       overflow: hidden;
+
     }
 
-    /* CONTROLES DE MOVIMIENTO */
+
+    /* =========================
+       CONTROLES DE MOVIMIENTO
+    ========================= */
 
     #mobileControls {
 
@@ -33,6 +40,7 @@
 
     }
 
+
     #mobileControls .fila {
 
       display: flex;
@@ -44,6 +52,7 @@
       justify-content: center;
 
     }
+
 
     #mobileControls button {
 
@@ -65,9 +74,8 @@
 
       touch-action: none;
 
-      z-index: 1000;
-
     }
+
 
     #mobileControls button:active {
 
@@ -76,7 +84,9 @@
     }
 
 
-    /* CONTROLES DE ALTURA */
+    /* =========================
+       CONTROLES DE ALTURA
+    ========================= */
 
     #mobileHeight {
 
@@ -95,6 +105,7 @@
       z-index: 1000;
 
     }
+
 
     #mobileHeight button {
 
@@ -120,6 +131,7 @@
 
     }
 
+
     #mobileHeight button:active {
 
       background: #d6b15f;
@@ -127,7 +139,9 @@
     }
 
 
-    /* CAJA DE INFORMACIÓN */
+    /* =========================
+       CAJA DE INFORMACIÓN
+    ========================= */
 
     #infoBox {
 
@@ -165,6 +179,7 @@
 
     }
 
+
     #titulo {
 
       margin: 0;
@@ -174,6 +189,7 @@
       color: #ffd56a;
 
     }
+
 
     #descripcion {
 
@@ -187,6 +203,7 @@
 
     }
 
+
     @keyframes fade {
 
       from {
@@ -196,6 +213,7 @@
         transform: translateX(30px);
 
       }
+
 
       to {
 
@@ -208,7 +226,9 @@
     }
 
 
-    /* LÍNEA DE CONEXIÓN */
+    /* =========================
+       LÍNEA DE CONEXIÓN
+    ========================= */
 
     #lineCanvas {
 
@@ -228,78 +248,7 @@
 
     }
 
-
-    /* BOTÓN AR */
-
-    #arButton {
-
-      position: absolute;
-
-      top: 25px;
-
-      left: 25px;
-
-      z-index: 2000;
-
-      padding: 14px 20px;
-
-      border: none;
-
-      border-radius: 12px;
-
-      background: rgba(30, 30, 30, .75);
-
-      color: white;
-
-      font-size: 16px;
-
-      cursor: pointer;
-
-      backdrop-filter: blur(8px);
-
-    }
-
-    #arButton:active {
-
-      background: #d6b15f;
-
-    }
-
-
-    /* BOTÓN SALIR AR */
-
-    #exitAR {
-
-      position: absolute;
-
-      top: 25px;
-
-      left: 25px;
-
-      z-index: 2000;
-
-      padding: 14px 20px;
-
-      border: none;
-
-      border-radius: 12px;
-
-      background: rgba(160, 30, 30, .8);
-
-      color: white;
-
-      font-size: 16px;
-
-      display: none;
-
-    }
-
   </style>
-
-
-  <!-- A-FRAME -->
-
-  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
 
 </head>
 
@@ -307,23 +256,9 @@
 <body>
 
 
-  <!-- BOTONES AR -->
-
-  <button id="arButton">
-
-    🥽 Activar AR
-
-  </button>
-
-
-  <button id="exitAR">
-
-    ❌ Salir de AR
-
-  </button>
-
-
-  <!-- CONTROLES DE MOVIMIENTO -->
+  <!-- =========================
+       CONTROLES DE MOVIMIENTO
+  ========================= -->
 
   <div id="mobileControls">
 
@@ -361,7 +296,9 @@
   </div>
 
 
-  <!-- CONTROLES VERTICALES -->
+  <!-- =========================
+       CONTROLES VERTICALES
+  ========================= -->
 
   <div id="mobileHeight">
 
@@ -381,7 +318,9 @@
   </div>
 
 
-  <!-- INFORMACIÓN -->
+  <!-- =========================
+       INFORMACIÓN
+  ========================= -->
 
   <div id="infoBox">
 
@@ -392,12 +331,16 @@
   </div>
 
 
-  <!-- CANVAS PARA LÍNEA -->
+  <!-- =========================
+       CANVAS DE CONEXIÓN
+  ========================= -->
 
   <canvas id="lineCanvas"></canvas>
 
 
-  <!-- ESCENA -->
+  <!-- =========================
+       ESCENA A-FRAME
+  ========================= -->
 
   <a-scene
 
@@ -405,14 +348,16 @@
 
     shadow="type:pcfsoft; enabled:true"
 
-    renderer="colorManagement:true; physicallyCorrectLights:true; alpha:true"
+    webxr="optionalFeatures: hit-test, local-floor"
 
-    webxr="optionalFeatures: hit-test;"
+    renderer="alpha: true; antialias: true; colorManagement: true"
 
-  >
+    vr-mode-ui="enabled: true">
 
 
-    <!-- ASSETS -->
+    <!-- =========================
+         ASSETS
+    ========================= -->
 
     <a-assets>
 
@@ -427,7 +372,9 @@
     </a-assets>
 
 
-    <!-- CIELO -->
+    <!-- =========================
+         CIELO
+    ========================= -->
 
     <a-sky
 
@@ -438,7 +385,9 @@
     </a-sky>
 
 
-    <!-- LUZ AMBIENTAL -->
+    <!-- =========================
+         LUZ AMBIENTAL
+    ========================= -->
 
     <a-light
 
@@ -451,7 +400,9 @@
     </a-light>
 
 
-    <!-- SOL -->
+    <!-- =========================
+         SOL PRINCIPAL
+    ========================= -->
 
     <a-light
 
@@ -463,12 +414,14 @@
 
       position="6 10 4"
 
-      castShadow="true">
+      cast-shadow="true">
 
     </a-light>
 
 
-    <!-- LUZ DE RELLENO -->
+    <!-- =========================
+         LUZ DE RELLENO
+    ========================= -->
 
     <a-light
 
@@ -483,7 +436,9 @@
     </a-light>
 
 
-    <!-- CONTRALUZ -->
+    <!-- =========================
+         CONTRALUZ
+    ========================= -->
 
     <a-light
 
@@ -498,7 +453,9 @@
     </a-light>
 
 
-    <!-- MODELO -->
+    <!-- =========================
+         MODELO 3D
+    ========================= -->
 
     <a-entity
 
@@ -508,12 +465,16 @@
 
       position="0 0 2"
 
-      scale=".2 .2 .2">
+      scale=".2 .2 .2"
+
+      shadow="cast: true; receive: true">
 
     </a-entity>
 
 
-    <!-- CÁMARA -->
+    <!-- =========================
+         CÁMARA
+    ========================= -->
 
     <a-entity
 
@@ -544,9 +505,10 @@
   <script>
 
 
-    /* ============================
-       VARIABLES DE MOVIMIENTO
-    ============================ */
+    /* =====================================================
+       MOVIMIENTO
+    ===================================================== */
+
 
     let mover = {
 
@@ -565,430 +527,565 @@
     };
 
 
-    const camara = document.querySelector("#camera");
+    const camara =
+
+      document.querySelector(
+
+        "#camera"
+
+      );
 
 
-    /* ============================
+    /* =====================================================
        MOVIMIENTO Q / E
-    ============================ */
-
-    window.addEventListener("keydown", (e) => {
+    ===================================================== */
 
 
-      const pos = camara.getAttribute("position");
+    window.addEventListener(
+
+      "keydown",
+
+      (e) => {
 
 
-      const paso = 0.25;
+        const pos =
+
+          camara.getAttribute(
+
+            "position"
+
+          );
 
 
-      switch (e.key.toLowerCase()) {
+        const paso = 0.25;
 
 
-        case "q":
+        switch (
 
-          pos.y += paso;
+          e.key.toLowerCase()
 
-          break;
-
-
-        case "e":
-
-          pos.y -= paso;
-
-          break;
+        ) {
 
 
-        default:
+          case "q":
 
-          return;
+            pos.y += paso;
+
+            break;
+
+
+          case "e":
+
+            pos.y -= paso;
+
+            break;
+
+
+          default:
+
+            return;
+
+        }
+
+
+        camara.setAttribute(
+
+          "position",
+
+          pos
+
+        );
+
 
       }
 
-
-      camara.setAttribute("position", pos);
-
-
-    });
+    );
 
 
-    /* ============================
+    /* =====================================================
        BOTONES DE MOVIMIENTO
-    ============================ */
+    ===================================================== */
+
 
     const botones = [
 
+
       ["btnW", "w"],
+
 
       ["btnA", "a"],
 
+
       ["btnS", "s"],
+
 
       ["btnD", "d"],
 
+
       ["btnUp", "up"],
 
+
       ["btnDown", "down"]
+
 
     ];
 
 
-    botones.forEach(([id, key]) => {
+    botones.forEach(
+
+      ([id, key]) => {
 
 
-      const boton = document.getElementById(id);
+        const boton =
+
+          document.getElementById(
+
+            id
+
+          );
 
 
-      /* TOUCH */
-
-      boton.addEventListener("touchstart", (e) => {
-
-        e.preventDefault();
-
-        mover[key] = true;
-
-      });
+        /* TOUCH */
 
 
-      boton.addEventListener("touchend", (e) => {
+        boton.addEventListener(
 
-        e.preventDefault();
+          "touchstart",
 
-        mover[key] = false;
-
-      });
+          (e) => {
 
 
-      /* POINTER */
-
-      boton.addEventListener("pointerdown", () => {
-
-        mover[key] = true;
-
-      });
+            e.preventDefault();
 
 
-      boton.addEventListener("pointerup", () => {
-
-        mover[key] = false;
-
-      });
+            mover[key] = true;
 
 
-      boton.addEventListener("pointerleave", () => {
+          }
 
-        mover[key] = false;
-
-      });
+        );
 
 
-      boton.addEventListener("pointercancel", () => {
+        boton.addEventListener(
 
-        mover[key] = false;
+          "touchend",
 
-      });
-
-
-    });
+          (e) => {
 
 
-    /* ============================
-       OBJETO DEL TEMPLO
-    ============================ */
-
-    const templo = document.querySelector("#templo");
+            e.preventDefault();
 
 
-    const infoBox = document.querySelector("#infoBox");
-
-    const titulo = document.querySelector("#titulo");
-
-    const descripcion = document.querySelector("#descripcion");
+            mover[key] = false;
 
 
-    /* ============================
+          }
+
+        );
+
+
+        /* POINTER */
+
+
+        boton.addEventListener(
+
+          "pointerdown",
+
+          () => {
+
+
+            mover[key] = true;
+
+
+          }
+
+        );
+
+
+        boton.addEventListener(
+
+          "pointerup",
+
+          () => {
+
+
+            mover[key] = false;
+
+
+          }
+
+        );
+
+
+        boton.addEventListener(
+
+          "pointerleave",
+
+          () => {
+
+
+            mover[key] = false;
+
+
+          }
+
+        );
+
+
+        boton.addEventListener(
+
+          "pointercancel",
+
+          () => {
+
+
+            mover[key] = false;
+
+
+          }
+
+        );
+
+
+      }
+
+    );
+
+
+    /* =====================================================
        INFORMACIÓN DE OBJETOS
-    ============================ */
+    ===================================================== */
+
 
     const infoPartes = {
 
 
       "Muro2": {
 
-        titulo: "Entrada Principal",
 
-        descripcion: "Lugar ceremonial del templo."
+        titulo:
+
+          "Entrada Principal",
+
+
+        descripcion:
+
+          "Lugar ceremonial del templo."
+
 
       },
 
 
       "Rampa": {
 
-        titulo: "Rampa Visible",
 
-        descripcion: "Rampa del monumento."
+        titulo:
+
+          "Rampa Visible",
+
+
+        descripcion:
+
+          "Rampa del monumento."
+
 
       },
 
 
       "Cubo1526": {
 
-        titulo: "Columna",
 
-        descripcion: "Soporte estructural de piedra."
+        titulo:
+
+          "Columna",
+
+
+        descripcion:
+
+          "Soporte estructural de piedra."
+
 
       },
 
 
       "Rampa2": {
 
-        titulo: "Rampa",
 
-        descripcion: "Segunda rampa del monumento."
+        titulo:
+
+          "Rampa",
+
+
+        descripcion:
+
+          "Segunda rampa del monumento."
+
 
       }
+
 
     };
 
 
-    /* ============================
+    /* =====================================================
+       ELEMENTOS DE INTERFAZ
+    ===================================================== */
+
+
+    const templo =
+
+      document.querySelector(
+
+        "#templo"
+
+      );
+
+
+    const infoBox =
+
+      document.querySelector(
+
+        "#infoBox"
+
+      );
+
+
+    const titulo =
+
+      document.querySelector(
+
+        "#titulo"
+
+      );
+
+
+    const descripcion =
+
+      document.querySelector(
+
+        "#descripcion"
+
+      );
+
+
+    const canvas =
+
+      document.getElementById(
+
+        "lineCanvas"
+
+      );
+
+
+    const ctx =
+
+      canvas.getContext(
+
+        "2d"
+
+      );
+
+
+    /* =====================================================
        RAYCASTER
-    ============================ */
-
-    let mouse = new THREE.Vector2();
+    ===================================================== */
 
 
-    let raycaster = new THREE.Raycaster();
+    let mouse =
+
+      new THREE.Vector2();
 
 
-    let lastHit = null;
+    let raycaster =
+
+      new THREE.Raycaster();
+
+
+    let lastHit =
+
+      null;
 
 
     let meshList = [];
 
 
-    /* ============================
+    /* =====================================================
        MODELO CARGADO
-    ============================ */
+    ===================================================== */
 
-    templo.addEventListener("model-loaded", () => {
 
+    templo.addEventListener(
 
-      const mesh = templo.getObject3D("mesh");
+      "model-loaded",
 
+      () => {
 
-      meshList = [];
 
+        const mesh =
 
-      mesh.traverse((obj) => {
+          templo.getObject3D(
 
+            "mesh"
 
-        if (!obj.isMesh)
+          );
 
-          return;
 
+        meshList = [];
 
-        obj.userData.clickable = true;
 
+        mesh.traverse(
 
-        meshList.push(obj);
+          (obj) => {
 
 
-      });
+            if (
 
+              !obj.isMesh
 
-      console.log(
+            )
 
-        "Objetos interactivos:",
+              return;
 
-        meshList
 
-      );
+            obj.userData.clickable =
 
+              true;
 
-    });
 
+            meshList.push(
 
-    /* ============================
-       MOUSE
-    ============================ */
+              obj
 
-    window.addEventListener("mousemove", (event) => {
-
-
-      if (meshList.length === 0)
-
-        return;
-
-
-      const camera = document
-
-        .querySelector("[camera]")
-
-        .getObject3D("camera");
-
-
-      mouse.x =
-
-        (event.clientX / window.innerWidth) * 2 - 1;
-
-
-      mouse.y =
-
-        -(event.clientY / window.innerHeight) * 2 + 1;
-
-
-      raycaster.setFromCamera(
-
-        mouse,
-
-        camera
-
-      );
-
-
-      const intersects =
-
-        raycaster.intersectObjects(
-
-          meshList,
-
-          true
-
-        );
-
-
-      if (intersects.length === 0) {
-
-
-        lastHit = null;
-
-
-        infoBox.style.display = "none";
-
-
-        ctx.clearRect(
-
-          0,
-
-          0,
-
-          canvas.width,
-
-          canvas.height
-
-        );
-
-
-        return;
-
-      }
-
-
-      const obj = intersects[0].object;
-
-
-      const data = infoPartes[obj.name];
-
-
-      if (!data)
-
-        return;
-
-
-      lastHit = obj.name;
-
-
-      titulo.textContent = data.titulo;
-
-
-      descripcion.textContent = data.descripcion;
-
-
-      infoBox.style.display = "block";
-
-
-      drawConnection(obj);
-
-
-    });
-
-
-    /* ============================
-       DETECTAR CENTRO
-    ============================ */
-
-    function detectarCentro() {
-
-
-      if (
-
-        !("ontouchstart" in window) &&
-
-        navigator.maxTouchPoints <= 0
-
-      )
-
-        return;
-
-
-      const camera = document
-
-        .querySelector("[camera]")
-
-        .getObject3D("camera");
-
-
-      raycaster.setFromCamera(
-
-        new THREE.Vector2(0, 0),
-
-        camera
-
-      );
-
-
-      const intersects =
-
-        raycaster.intersectObjects(
-
-          meshList,
-
-          true
-
-        );
-
-
-      if (intersects.length > 0) {
-
-
-        const obj = intersects[0].object;
-
-
-        const data = infoPartes[obj.name];
-
-
-        if (data) {
-
-
-          if (lastHit !== obj.name) {
-
-
-            lastHit = obj.name;
-
-
-            titulo.textContent = data.titulo;
-
-
-            descripcion.textContent = data.descripcion;
-
-
-            infoBox.style.display = "block";
+            );
 
 
           }
 
+        );
 
-          drawConnection(obj);
+
+        console.log(
+
+          "Objetos interactivos:",
+
+          meshList
+
+        );
+
+
+      }
+
+    );
+
+
+    /* =====================================================
+       DETECCIÓN CON MOUSE
+    ===================================================== */
+
+
+    window.addEventListener(
+
+      "mousemove",
+
+      (event) => {
+
+
+        if (
+
+          meshList.length === 0
+
+        )
+
+          return;
+
+
+        const camera =
+
+          document
+
+            .querySelector(
+
+              "[camera]"
+
+            )
+
+            .getObject3D(
+
+              "camera"
+
+            );
+
+
+        mouse.x =
+
+          (
+
+            event.clientX /
+
+            window.innerWidth
+
+          ) * 2 - 1;
+
+
+        mouse.y =
+
+          - (
+
+            event.clientY /
+
+            window.innerHeight
+
+          ) * 2 + 1;
+
+
+        raycaster.setFromCamera(
+
+          mouse,
+
+          camera
+
+        );
+
+
+        const intersects =
+
+          raycaster.intersectObjects(
+
+            meshList,
+
+            true
+
+          );
+
+
+        if (
+
+          intersects.length === 0
+
+        ) {
+
+
+          lastHit =
+
+            null;
+
+
+          infoBox.style.display =
+
+            "none";
+
+
+          ctx.clearRect(
+
+            0,
+
+            0,
+
+            canvas.width,
+
+            canvas.height
+
+          );
 
 
           return;
@@ -996,13 +1093,203 @@
 
         }
 
+
+        const obj =
+
+          intersects[0].object;
+
+
+        const data =
+
+          infoPartes[
+
+            obj.name
+
+          ];
+
+
+        if (!data)
+
+          return;
+
+
+        lastHit =
+
+          obj.name;
+
+
+        titulo.textContent =
+
+          data.titulo;
+
+
+        descripcion.textContent =
+
+          data.descripcion;
+
+
+        infoBox.style.display =
+
+          "block";
+
+
+        drawConnection(
+
+          obj
+
+        );
+
+
+      }
+
+    );
+
+
+    /* =====================================================
+       DETECCIÓN EN EL CENTRO
+    ===================================================== */
+
+
+    function detectarCentro() {
+
+
+      if (
+
+
+        !("ontouchstart" in window) &&
+
+
+        navigator.maxTouchPoints <= 0
+
+
+      )
+
+        return;
+
+
+      const camera =
+
+        document
+
+          .querySelector(
+
+            "[camera]"
+
+          )
+
+          .getObject3D(
+
+            "camera"
+
+          );
+
+
+      raycaster.setFromCamera(
+
+        new THREE.Vector2(
+
+          0,
+
+          0
+
+        ),
+
+        camera
+
+      );
+
+
+      const intersects =
+
+        raycaster.intersectObjects(
+
+          meshList,
+
+          true
+
+        );
+
+
+      if (
+
+        intersects.length > 0
+
+      ) {
+
+
+        const obj =
+
+          intersects[0].object;
+
+
+        const data =
+
+          infoPartes[
+
+            obj.name
+
+          ];
+
+
+        if (data) {
+
+
+          if (
+
+            lastHit !==
+
+            obj.name
+
+          ) {
+
+
+            lastHit =
+
+              obj.name;
+
+
+            titulo.textContent =
+
+              data.titulo;
+
+
+            descripcion.textContent =
+
+              data.descripcion;
+
+
+            infoBox.style.display =
+
+              "block";
+
+
+          }
+
+
+          drawConnection(
+
+            obj
+
+          );
+
+
+          return;
+
+
+        }
+
+
       }
 
 
-      lastHit = null;
+      lastHit =
+
+        null;
 
 
-      infoBox.style.display = "none";
+      infoBox.style.display =
+
+        "none";
 
 
       ctx.clearRect(
@@ -1021,22 +1308,9 @@
     }
 
 
-    /* ============================
+    /* =====================================================
        CANVAS
-    ============================ */
-
-    const canvas =
-
-      document.getElementById(
-
-        "lineCanvas"
-
-      );
-
-
-    const ctx =
-
-      canvas.getContext("2d");
+    ===================================================== */
 
 
     function resizeCanvas() {
@@ -1067,11 +1341,16 @@
     );
 
 
-    /* ============================
-       DIBUJAR CONEXIÓN
-    ============================ */
+    /* =====================================================
+       LÍNEA DE CONEXIÓN
+    ===================================================== */
 
-    function drawConnection(obj) {
+
+    function drawConnection(
+
+      obj
+
+    ) {
 
 
       ctx.clearRect(
@@ -1087,33 +1366,69 @@
       );
 
 
-      const camera = document
+      const camera =
 
-        .querySelector("[camera]")
+        document
 
-        .getObject3D("camera");
+          .querySelector(
+
+            "[camera]"
+
+          )
+
+          .getObject3D(
+
+            "camera"
+
+          );
 
 
-      const pos = obj.getWorldPosition(
+      const pos =
 
-        new THREE.Vector3()
+        obj.getWorldPosition(
+
+          new THREE.Vector3()
+
+        );
+
+
+      pos.project(
+
+        camera
 
       );
 
 
-      pos.project(camera);
-
-
       const x =
 
-        (pos.x * 0.5 + 0.5) *
+        (
+
+          pos.x *
+
+          0.5 +
+
+          0.5
+
+        ) *
 
         canvas.width;
 
 
       const y =
 
-        (-pos.y * 0.5 + 0.5) *
+        (
+
+          - (
+
+            pos.y *
+
+            0.5 +
+
+            0.5
+
+          )
+
+        ) *
 
         canvas.height;
 
@@ -1123,35 +1438,57 @@
         infoBox.getBoundingClientRect();
 
 
-      const x2 = box.left;
+      const x2 =
+
+        box.left;
 
 
       const y2 =
 
         box.top +
 
-        box.height / 2;
+        box.height /
+
+        2;
 
 
-      ctx.strokeStyle = "#ffd56a";
+      ctx.strokeStyle =
+
+        "#ffd56a";
 
 
-      ctx.lineWidth = 3;
+      ctx.lineWidth =
+
+        3;
 
 
       ctx.beginPath();
 
 
-      ctx.moveTo(x, y);
+      ctx.moveTo(
+
+        x,
+
+        y
+
+      );
 
 
-      ctx.lineTo(x2, y2);
+      ctx.lineTo(
+
+        x2,
+
+        y2
+
+      );
 
 
       ctx.stroke();
 
 
-      ctx.fillStyle = "#ffd56a";
+      ctx.fillStyle =
+
+        "#ffd56a";
 
 
       ctx.beginPath();
@@ -1178,9 +1515,10 @@
     }
 
 
-    /* ============================
-       MOVIMIENTO
-    ============================ */
+    /* =====================================================
+       ANIMACIÓN Y MOVIMIENTO
+    ===================================================== */
+
 
     function animate() {
 
@@ -1192,13 +1530,21 @@
       );
 
 
-      const velocidad = 0.12;
+      const velocidad =
+
+        0.12;
 
 
-      const velocidadY = 0.08;
+      const velocidadY =
+
+        0.08;
 
 
-      if (mover.w)
+      if (
+
+        mover.w
+
+      )
 
         camara.object3D.translateZ(
 
@@ -1207,7 +1553,11 @@
         );
 
 
-      if (mover.s)
+      if (
+
+        mover.s
+
+      )
 
         camara.object3D.translateZ(
 
@@ -1216,7 +1566,11 @@
         );
 
 
-      if (mover.a)
+      if (
+
+        mover.a
+
+      )
 
         camara.object3D.translateX(
 
@@ -1225,7 +1579,11 @@
         );
 
 
-      if (mover.d)
+      if (
+
+        mover.d
+
+      )
 
         camara.object3D.translateX(
 
@@ -1234,14 +1592,22 @@
         );
 
 
-      if (mover.up)
+      if (
+
+        mover.up
+
+      )
 
         camara.object3D.position.y +=
 
           velocidadY;
 
 
-      if (mover.down)
+      if (
+
+        mover.down
+
+      )
 
         camara.object3D.position.y -=
 
@@ -1257,9 +1623,9 @@
     animate();
 
 
-    /* =================================================
-       INTEGRACIÓN AR / MR
-    ================================================= */
+    /* =====================================================
+       INTEGRACIÓN AR
+    ===================================================== */
 
 
     const scene =
@@ -1280,118 +1646,32 @@
       );
 
 
-    const modelo =
+    scene.addEventListener(
 
-      document.querySelector(
+      "enter-vr",
 
-        "#templo"
-
-      );
+      () => {
 
 
-    const arButton =
+        if (
 
-      document.querySelector(
+          scene.is(
 
-        "#arButton"
+            "ar-mode"
 
-      );
+          )
 
-
-    const exitAR =
-
-      document.querySelector(
-
-        "#exitAR"
-
-      );
+        ) {
 
 
-    /* ============================
-       ENTRAR EN AR
-    ============================ */
+          console.log(
 
-    arButton.addEventListener(
-
-      "click",
-
-      async () => {
-
-
-        try {
-
-
-          if (
-
-            !navigator.xr
-
-          ) {
-
-
-            alert(
-
-              "Este dispositivo o navegador no soporta WebXR."
-
-            );
-
-
-            return;
-
-          }
-
-
-          const supported =
-
-            await navigator.xr.isSessionSupported(
-
-              "immersive-ar"
-
-            );
-
-
-          if (!supported) {
-
-
-            alert(
-
-              "El modo AR no está disponible en este dispositivo."
-
-            );
-
-
-            return;
-
-          }
-
-
-          const session =
-
-            await navigator.xr.requestSession(
-
-              "immersive-ar",
-
-              {
-
-                requiredFeatures: [],
-
-                optionalFeatures: [
-
-                  "local-floor",
-
-                  "hit-test"
-
-                ]
-
-              }
-
-            );
-
-
-          scene.renderer.xr.setSession(
-
-            session
+            "Modo AR iniciado"
 
           );
+
+
+          /* OCULTAR CIELO */
 
 
           sky.setAttribute(
@@ -1403,16 +1683,19 @@
           );
 
 
-          modelo.setAttribute(
+          /* POSICIONAR MODELO */
+
+
+          templo.setAttribute(
 
             "position",
 
-            "0 0 -3"
+            "0 0 -11"
 
           );
 
 
-          modelo.setAttribute(
+          templo.setAttribute(
 
             "scale",
 
@@ -1421,44 +1704,6 @@
           );
 
 
-          arButton.style.display =
-
-            "none";
-
-
-          exitAR.style.display =
-
-            "block";
-
-
-          console.log(
-
-            "Modo AR iniciado"
-
-          );
-
-
-        }
-
-        catch (error) {
-
-
-          console.error(
-
-            "Error al iniciar AR:",
-
-            error
-
-          );
-
-
-          alert(
-
-            "No se pudo iniciar el modo AR."
-
-          );
-
-
         }
 
 
@@ -1467,101 +1712,9 @@
     );
 
 
-    /* ============================
+    /* =====================================================
        SALIR DE AR
-    ============================ */
-
-    exitAR.addEventListener(
-
-      "click",
-
-      async () => {
-
-
-        const session =
-
-          scene.renderer.xr.getSession();
-
-
-        if (session) {
-
-
-          await session.end();
-
-
-        }
-
-
-        sky.setAttribute(
-
-          "visible",
-
-          true
-
-        );
-
-
-        modelo.setAttribute(
-
-          "position",
-
-          "0 0 2"
-
-        );
-
-
-        modelo.setAttribute(
-
-          "scale",
-
-          "0.2 0.2 0.2"
-
-        );
-
-
-        arButton.style.display =
-
-          "block";
-
-
-        exitAR.style.display =
-
-          "none";
-
-
-        console.log(
-
-          "Saliendo de AR"
-
-        );
-
-
-      }
-
-    );
-
-
-    /* ============================
-       EVENTOS WEBXR
-    ============================ */
-
-    scene.addEventListener(
-
-      "enter-vr",
-
-      () => {
-
-
-        console.log(
-
-          "Se inició una sesión WebXR"
-
-        );
-
-
-      }
-
-    );
+    ===================================================== */
 
 
     scene.addEventListener(
@@ -1573,7 +1726,7 @@
 
         console.log(
 
-          "Sesión WebXR finalizada"
+          "Saliendo AR"
 
         );
 
@@ -1587,14 +1740,22 @@
         );
 
 
-        arButton.style.display =
+        templo.setAttribute(
 
-          "block";
+          "position",
+
+          "0 0.8 0"
+
+        );
 
 
-        exitAR.style.display =
+        templo.setAttribute(
 
-          "none";
+          "scale",
+
+          "0.3 0.3 0.3"
+
+        );
 
 
       }
