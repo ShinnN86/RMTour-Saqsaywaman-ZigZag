@@ -233,6 +233,31 @@
 
   <script>
 
+
+
+const scene = document.querySelector('#scene');
+const sky = document.querySelector('#sky');
+const modelo = document.querySelector('#modeloGLB');
+
+scene.addEventListener('enter-vr', () => {
+
+  if (scene.is('ar-mode')) {
+
+    console.log("Modo AR iniciado");
+    sky.setAttribute('visible', false);
+    modelo.setAttribute('position', '0 0 -11');
+    modelo.setAttribute('scale', '0.3 0.3 0.3');
+  }
+});
+
+scene.addEventListener('exit-vr', () => {
+  console.log("Saliendo AR");
+  sky.setAttribute('visible', true);
+  modelo.setAttribute('position', '0 0.8 0');
+  modelo.setAttribute('scale', '0.3 0.3 0.3');
+
+});
+
     let mover = {
       w: false,
       a: false,
